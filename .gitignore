@@ -39,3 +39,5 @@ yarn-error.*
 *.env
 *.env*
 .env*
+
+%ProgramData%/
