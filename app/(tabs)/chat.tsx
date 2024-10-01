@@ -17,7 +17,7 @@ import { Feather } from "@expo/vector-icons";
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Avatar } from "@rneui/themed";
-import { backendUrl } from '@env';
+import { backendUrl } from '@.env';
 
 export default function Chat() {
   
@@ -133,7 +133,7 @@ export default function Chat() {
   };
 
   return (
-    <View className="flex-1 items-center justify-center">
+    <View className="flex-1 items-center justify-center bg-primary">
       <KeyboardAwareScrollView
         alwaysBounceVertical={false}
         className="flex-1 w-full"
