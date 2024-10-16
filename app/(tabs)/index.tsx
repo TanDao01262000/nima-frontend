@@ -3,6 +3,7 @@ import { View, Text, Image, Dimensions, StyleSheet, Button } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { useRouter } from 'expo-router';
 
 // Define the type for the navigation stack
 type RootStackParamList = {
@@ -16,7 +17,7 @@ type DashboardScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Da
 const { width, height } = Dimensions.get('window');
 
 export default function Dashboard() {
-  const navigation = useNavigation<DashboardScreenNavigationProp>();
+  const router = useRouter();
 
   return (
     <LinearGradient
@@ -24,7 +25,7 @@ export default function Dashboard() {
       style={styles.container}
     >
       <Image
-        source={require('/Users/quyenquyen/sampleExpo/nima-frontend/assets/Nima.png')}
+        source={require('../../assets/Nima.png')}
         style={styles.image}
         resizeMode="contain"
       />
@@ -34,7 +35,7 @@ export default function Dashboard() {
         <Text style={styles.bubbleText}>Go to Chat</Text>
         <Button
           title="Chat"
-          onPress={() => navigation.navigate('Chat')}
+          onPress={() => router.push("/(tabs)/chat")}
         />
       </View>
     </LinearGradient>
