@@ -6,13 +6,13 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { useRouter } from 'expo-router';
 
 // Define the type for the navigation stack
-type RootStackParamList = {
+/*type RootStackParamList = {
   Dashboard: undefined;
   Chat: undefined; // Add other routes as needed
-};
+};*/
 
 // Define the navigation prop type for the Dashboard screen
-type DashboardScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Dashboard'>;
+//type DashboardScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Dashboard'>;
 
 const { width, height } = Dimensions.get('window');
 
