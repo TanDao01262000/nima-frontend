@@ -9,19 +9,17 @@ import {
   Text,
   ActivityIndicator,
   Alert,
+  ImageBackground,  // <-- Import ImageBackground
+  Dimensions,        // <-- Import Dimensions to get screen size
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useEffect, useRef, useState } from "react";
-
 import { Feather } from "@expo/vector-icons";
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Avatar } from "@rneui/themed";
-import { backendUrl } from '@.env';
 
 export default function Chat() {
-  
-
   const backendUrl = "https://nima-agent-443168126805.us-central1.run.app";
   const [chatText, setChatText] = useState("");
   const [textInputHeight, setTextInputHeight] = useState(60);
@@ -33,13 +31,15 @@ export default function Chat() {
   const translateYRef = useRef(new Animated.Value(0)).current;
   const tabBarHeight = useBottomTabBarHeight();
 
+  const { width, height } = Dimensions.get("window"); // Get screen width and height
+
   useEffect(() => {
     const keyboardWillShowListener = Keyboard.addListener(
       "keyboardWillShow",
       (event) => {
         const { height: newKeyboardHeight } = event.endCoordinates;
         Animated.timing(translateYRef, {
-          toValue: tabBarHeight - newKeyboardHeight, // negative value of translateY means move up
+          toValue: tabBarHeight - newKeyboardHeight,
           duration: event.duration,
           easing: Easing.bezier(0.33, 0.66, 0.66, 1),
           useNativeDriver: false,
@@ -118,7 +118,6 @@ export default function Chat() {
           newAIMessage,
         ]);
       } else {
-        // Handle error response
         console.error('Error:', response.statusText);
       }
     } catch (error) {
@@ -133,7 +132,14 @@ export default function Chat() {
   };
 
   return (
-    <View className="flex-1 items-center justify-center bg-primary">
+    <ImageBackground
+      source={require('/Users/nina/nima-frontend/assets/Nima1.png')}  // <-- Path to your image
+      style={{
+        width: width,     // Full width of the screen
+        height: height,   // Full height of the screen
+      }}
+      resizeMode="contain"  // <-- "cover" ensures the image covers the entire view
+    >
       <KeyboardAwareScrollView
         alwaysBounceVertical={false}
         className="flex-1 w-full"
@@ -148,7 +154,6 @@ export default function Chat() {
                     key={index}
                   >
                     <FontAwesome size={28} name="gear" color="blue" />
-
                     <View className="p-2 bg-dark-blue mx-2 rounded-lg w-4/5 bg-gray-500">
                       <Text
                         style={{
@@ -230,6 +235,6 @@ export default function Chat() {
           )}
         </Pressable>
       </Animated.View>
-    </View>
+    </ImageBackground>
   );
 }
