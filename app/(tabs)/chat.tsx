@@ -9,8 +9,8 @@ import {
   Text,
   ActivityIndicator,
   Alert,
-  ImageBackground,  // <-- Import ImageBackground
-  Dimensions,        // <-- Import Dimensions to get screen size
+  ImageBackground,
+  Dimensions,
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useEffect, useRef, useState } from "react";
@@ -31,7 +31,7 @@ export default function Chat() {
   const translateYRef = useRef(new Animated.Value(0)).current;
   const tabBarHeight = useBottomTabBarHeight();
 
-  const { width, height } = Dimensions.get("window"); // Get screen width and height
+  const { width, height } = Dimensions.get("window");
 
   useEffect(() => {
     const keyboardWillShowListener = Keyboard.addListener(
@@ -95,19 +95,19 @@ export default function Chat() {
         body: JSON.stringify({
           input: {
             question: messageValue,
-            chat_history: []
+            chat_history: [],
           },
           config: {
             metadata: {
-              conversation_id: 'conversationId',
+              conversation_id: "conversationId",
             },
           },
         }),
       });
       if (response.ok) {
         const jsonResponse = await response.json();
-        const responseData = jsonResponse; 
-        
+        const responseData = jsonResponse;
+
         console.log(responseData);
         const newAIMessage = {
           content: responseData.trimEnd(),
@@ -118,7 +118,7 @@ export default function Chat() {
           newAIMessage,
         ]);
       } else {
-        console.error('Error:', response.statusText);
+        console.error("Error:", response.statusText);
       }
     } catch (error) {
       setSendingChat(false);
@@ -132,109 +132,120 @@ export default function Chat() {
   };
 
   return (
-    <ImageBackground
-      source={require('/Users/nina/nima-frontend/assets/Nima1.png')}  // <-- Path to your image
-      style={{
-        width: width,     // Full width of the screen
-        height: height,   // Full height of the screen
-      }}
-      resizeMode="contain"  // <-- "cover" ensures the image covers the entire view
-    >
-      <KeyboardAwareScrollView
-        alwaysBounceVertical={false}
-        className="flex-1 w-full"
-      >
-        <View className="flex-1 mt-3 mx-3">
-          {conversation && conversation.length > 0 && (
-            <View className="my-4">
-              {conversation.map((msg, index) =>
-                msg.role === "AI" ? (
-                  <View
-                    className="flex flex-row justify-start mb-2 items-center"
-                    key={index}
-                  >
-                    <FontAwesome size={28} name="gear" color="blue" />
-                    <View className="p-2 bg-dark-blue mx-2 rounded-lg w-4/5 bg-gray-500">
-                      <Text
-                        style={{
-                          fontSize: 16,
-                          lineHeight: 20,
-                        }}
-                        className="text-white"
-                      >
-                        {msg.content}
-                      </Text>
-                    </View>
-                  </View>
-                ) : (
-                  <View
-                    className="flex flex-row justify-end mb-2 items-center"
-                    key={index}
-                  >
-                    <View
-                      className="p-2 bg-dark-red mr-2 rounded-lg bg-red-500"
-                      style={{ maxWidth: "85%" }}
-                    >
-                      <Text
-                        style={{
-                          fontSize: 16,
-                          lineHeight: 20,
-                        }}
-                        className="text-white"
-                      >
-                        {msg.content}
-                      </Text>
-                    </View>
-                    <Avatar
-                      size={34}
-                      rounded
-                      title="U"
-                      containerStyle={{
-                        backgroundColor: "red",
-                      }}
-                    />
-                  </View>
-                )
-              )}
-            </View>
-          )}
-        </View>
-      </KeyboardAwareScrollView>
-      <Animated.View
+    <View style={{ flex: 1 }}>
+      {/* Full-screen Image Background */}
+      <ImageBackground
+        source={require('/Users/nina/nima-frontend/assets/Nima1.png')}
         style={{
-          transform: [
-            {
-              translateY: Platform.OS === "ios" ? translateYRef : 0,
-            },
-          ],
+          flex: 1, // Allow it to take up full screen
+          justifyContent: "flex-end", // Ensure content appears at the bottom
         }}
-        className="px-2 bg-white flex-row py-2 items-center"
+        resizeMode="cover" // Cover the entire background
       >
-        <TextInput
-          className="flex-1 border-2 rounded-xl border-gray-600 mr-4 px-3 max-h-20"
-          multiline
-          style={{ height: textInputHeight }}
-          value={chatText}
-          onChangeText={(text) => setChatText(text)}
-          placeholder="Ask a question here"
-          onContentSizeChange={handleContentSizeChange}
-        />
-        <Pressable
-          style={{
-            backgroundColor:
-              chatText.trim() === "" || sendingChat ? "gray" : "blue",
-          }}
-          className="items-center justify-center w-12 rounded-full p-2"
-          onPress={handleSubmit}
-          disabled={chatText.trim() === "" || sendingChat}
+        {/* Chat Messages */}
+        <KeyboardAwareScrollView
+          alwaysBounceVertical={false}
+          style={{ flex: 1, marginTop: 50 }}
+          contentContainerStyle={{ flexGrow: 1, justifyContent: "flex-end" }}
         >
-          {sendingChat ? (
-            <ActivityIndicator size="small" color="white" />
-          ) : (
-            <Feather name="send" size={20} color={"white"} />
-          )}
-        </Pressable>
-      </Animated.View>
-    </ImageBackground>
+          <View style={{ paddingHorizontal: 10 }}>
+            {conversation && conversation.length > 0 && (
+              <View className="my-4">
+                {conversation.map((msg, index) =>
+                  msg.role === "AI" ? (
+                    <View
+                      className="flex flex-row justify-start mb-2 items-center"
+                      key={index}
+                    >
+                      <FontAwesome size={28} name="gear" color="blue" />
+                      <View className="p-2 bg-dark-blue mx-2 rounded-lg w-4/5 bg-gray-500">
+                        <Text
+                          style={{
+                            fontSize: 16,
+                            lineHeight: 20,
+                          }}
+                          className="text-white"
+                        >
+                          {msg.content}
+                        </Text>
+                      </View>
+                    </View>
+                  ) : (
+                    <View
+                      className="flex flex-row justify-end mb-2 items-center"
+                      key={index}
+                    >
+                      <View
+                        className="p-2 bg-dark-red mr-2 rounded-lg bg-red-500"
+                        style={{ maxWidth: "85%" }}
+                      >
+                        <Text
+                          style={{
+                            fontSize: 16,
+                            lineHeight: 20,
+                          }}
+                          className="text-white"
+                        >
+                          {msg.content}
+                        </Text>
+                      </View>
+                      <Avatar
+                        size={34}
+                        rounded
+                        title="U"
+                        containerStyle={{
+                          backgroundColor: "red",
+                        }}
+                      />
+                    </View>
+                  )
+                )}
+              </View>
+            )}
+          </View>
+        </KeyboardAwareScrollView>
+
+        {/* Chat Input */}
+        <Animated.View
+          style={{
+            transform: [
+              {
+                translateY: Platform.OS === "ios" ? translateYRef : 0,
+              },
+            ],
+            backgroundColor: "white",
+            paddingHorizontal: 10,
+            paddingVertical: 5,
+          }}
+        >
+          <View className="flex-row items-center">
+            <TextInput
+              className="flex-1 border-2 rounded-xl border-gray-600 mr-4 px-3 max-h-20"
+              multiline
+              style={{ height: textInputHeight }}
+              value={chatText}
+              onChangeText={(text) => setChatText(text)}
+              placeholder="Ask a question here"
+              onContentSizeChange={handleContentSizeChange}
+            />
+            <Pressable
+              style={{
+                backgroundColor:
+                  chatText.trim() === "" || sendingChat ? "gray" : "blue",
+              }}
+              className="items-center justify-center w-12 rounded-full p-2"
+              onPress={handleSubmit}
+              disabled={chatText.trim() === "" || sendingChat}
+            >
+              {sendingChat ? (
+                <ActivityIndicator size="small" color="white" />
+              ) : (
+                <Feather name="send" size={20} color={"white"} />
+              )}
+            </Pressable>
+          </View>
+        </Animated.View>
+      </ImageBackground>
+    </View>
   );
 }
