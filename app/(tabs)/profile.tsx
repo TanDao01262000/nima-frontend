@@ -1,9 +1,12 @@
-import { View, Text } from 'react-native';
+import React from 'react';
+import { ImageBackground } from 'react-native';
 
 export default function Dashboard() {
   return (
-    <View className="flex flex-1 items-center justify-center bg-primary">
-      <Text className='text-3xl font-bold text-foreground'>Tab [Profile]</Text>
-    </View>
+    <ImageBackground 
+      source={require('/Users/nina/nima-frontend/assets/Nima2.png')}
+      style={{ flex: 1 }}
+      resizeMode="cover"
+    />
   );
 }
