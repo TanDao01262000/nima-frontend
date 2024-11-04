@@ -20,7 +20,7 @@ import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Avatar } from "@rneui/themed";
 
 export default function Chat() {
-  const backendUrl = "https://nima-agent-443168126805.us-central1.run.app";
+  const backendUrl = process.env.EXPO_PUBLIC_API_URL;
   const [chatText, setChatText] = useState("");
   const [textInputHeight, setTextInputHeight] = useState(60);
   const [sendingChat, setSendingChat] = useState(false);
@@ -135,7 +135,7 @@ export default function Chat() {
     <View style={{ flex: 1 }}>
       {/* Full-screen Image Background */}
       <ImageBackground
-        source={require('/Users/nina/nima-frontend/assets/Nima1.png')}
+        source={require('../../assets/Nima1.png')}
         style={{
           flex: 1, // Allow it to take up full screen
           justifyContent: "flex-end", // Ensure content appears at the bottom
