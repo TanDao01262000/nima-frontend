@@ -29,8 +29,8 @@ export default function Dashboard() {
         >
             <ScrollView>
                 <View >
-                    <Text style={styles.header}>
-                        Let's talk Movies.
+                    <Text style={styles.header}> 
+                        Let's talk Movies. 
                     </Text>
                 </View>
 
@@ -60,26 +60,35 @@ export default function Dashboard() {
                         Popular Questions
                     </Text>
                     <View
-                        style={styles.bubble}
-                        onTouchEnd={() => router.push('/(tabs)/chat')}
-                    >
-                        <Text style={{ fontWeight: '500' }}>What is NIMA?</Text>
-                    </View>
-                    <View
-                        style={styles.bubble}
+                        style={styles.bubbleButton}
                         onTouchEnd={() => router.push('/(tabs)/chat')}
                     >
                         <Text style={{ fontWeight: '500' }}>
-                            Recommend some Christmas Movies
+                            {'\u{1F9D9}'} Summarize the first Harry Potter movie
                         </Text>
                     </View>
-
                     <View
-                        style={styles.bubble}
+                        style={styles.bubbleButton}
                         onTouchEnd={() => router.push('/(tabs)/chat')}
                     >
                         <Text style={{ fontWeight: '500' }}>
-                            Summarize the first Harry Potter movie
+                            {'\u{1F384}'} Recommend some Christmas movies
+                        </Text>
+                    </View>
+                    <View
+                        style={styles.bubbleButton}
+                        onTouchEnd={() => router.push('/(tabs)/chat')}
+                    >
+                        <Text style={{ fontWeight: '500' }}>
+                            {'\u{1F37F}'} What new movies are coming out this month?
+                        </Text>
+                    </View>
+                    <View
+                        style={styles.bubbleButton}
+                        onTouchEnd={() => router.push('/(tabs)/chat')}
+                    >
+                        <Text style={{ fontWeight: '500' }}>
+                            {'\u{1F4BB}'} What is NIMA?
                         </Text>
                     </View>
                 </View>
@@ -118,14 +127,14 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20, // Same horizontal padding as bubble
         paddingVertical: 1,
     },
-    bubble: {
+    bubbleButton: {
         backgroundColor: Colors.teal,
         fontSize: 20,
         borderRadius: 16,
         paddingHorizontal: 16,
         paddingVertical: 10,
         marginHorizontal: 16,
-        alignItems: 'center',
+        alignItems: 'flex-start',
         opacity: 0.95,
     },
     image: {
