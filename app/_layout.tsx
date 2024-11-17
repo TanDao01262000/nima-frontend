@@ -10,6 +10,7 @@ import "../global.css";
 import { MyLightTheme } from "../utilities/themeOptions";
 import { useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import React from "react";
 
 export default function Layout() {
 
