@@ -1,7 +1,7 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { ImageSlider } from '../data/SliderData'
-import SliderItem from './SliderItem'
+import { FlatList, StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { ImageSlider } from '../data/SliderData';
+import SliderItem from './SliderItem';
 
 const Slider = () => {
     return (
@@ -9,15 +9,18 @@ const Slider = () => {
             <FlatList
                 data={ImageSlider}
                 renderItem={({item, index }) => (
-                    <SliderItem item = {item} index = {index} />
+                    <SliderItem item={item} index={index} />
                 )} 
+                horizontal
             />
         </View>
 
-    )
+    );
 }
 
 
 export default Slider
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+
+})

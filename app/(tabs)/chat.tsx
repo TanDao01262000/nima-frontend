@@ -18,6 +18,7 @@ import { Feather } from "@expo/vector-icons";
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Avatar } from "@rneui/themed";
+import React from "react";
 
 export default function Chat() {
   const backendUrl = process.env.EXPO_PUBLIC_API_URL;

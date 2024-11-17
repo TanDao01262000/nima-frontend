@@ -8,18 +8,18 @@ export type ImageSliderType = {
 
 export const ImageSlider = [
     {
-        title: 'asdflas;j',
-        image: require('@/assets/movie1.png'),
-        description: 'asdfjlasdf'
+        title: 'Home Alone',
+        image: require('../assets/movie1.png'),
+        description: 'Desc for movie 1'
     },
     {
-        title: 'asdflas;j',
-        image: require('@/assets/movie2.png'),
-        description: 'asdfjlasdf'
+        title: 'Avengers Infinity War',
+        image: require('../assets/movie2.png'),
+        description: 'Desc for movie 2'
     },
     {
-        title: 'asdflas;j',
-        image: require('@/assets/movie3.png'),
-        description: 'asdfjlasdf'
+        title: 'Planet Earth: A Blue Planet',
+        image: require('../assets/movie3.png'),
+        description: 'Desc for movie 3'
     }
 ]

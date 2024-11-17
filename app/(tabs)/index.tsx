@@ -5,6 +5,8 @@ import { useNavigation } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { useRouter } from 'expo-router'
 import Slider from "../../components/Slider";
+import { ScrollView } from 'react-native-gesture-handler'
+import { Colors } from '../../constants/Colors'
 
 // Define the type for the navigation stack
 /*type RootStackParamList = {
@@ -25,135 +27,106 @@ export default function Dashboard() {
             colors={['#A8E6FF', '#FEEAB8']} // Gradient colors
             style={styles.container}
         >
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <Image
-                    source={require('../../assets/nima-logo.png')}
-                    style={{ width: 200, height: 200 }}
-                    resizeMode='contain'
-                />
-                <Image
-                    source={require('../../assets/cat-logo.png')}
-                    style={{ width: 100, height: 100 }}
-                    resizeMode='contain'
-                />
-            </View>
-
-            <View>
-              <Slider />
-            </View>
-
-            <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
-                <Image
-                    src='https://i.ebayimg.com/images/g/E8AAAOSw1WdjNvus/s-l1200.jpg'
-                    style={{ width: 100, height: 180 }}
-                    resizeMode='contain'
-                />
-                <Image
-                    src='https://i.ebayimg.com/images/g/E8AAAOSw1WdjNvus/s-l1200.jpg'
-                    style={{ width: 150, height: 200 }}
-                    resizeMode='contain'
-                />
-                <Image
-                    src='https://i.ebayimg.com/images/g/E8AAAOSw1WdjNvus/s-l1200.jpg'
-                    style={{ width: 100, height: 180 }}
-                    resizeMode='contain'
-                />
-            </View>
-            <View style={{ gap: 16 }}>
-                <Text style={{ fontWeight: 'bold', fontSize: 20 }}>
-                    Popular Questions
-                </Text>
-                <View
-                    style={{
-                        backgroundColor: '#FFF',
-                        borderRadius: 16,
-                        paddingHorizontal: 16,
-                        paddingVertical: 8,
-                    }}
-                    onTouchEnd={() => router.push('/(tabs)/chat')}
-                >
-                    <Text style={{ fontWeight: '500' }}>What is NIMA?</Text>
-                </View>
-                <View
-                    style={{
-                        backgroundColor: '#FFF',
-                        borderRadius: 16,
-                        paddingHorizontal: 16,
-                        paddingVertical: 8,
-                    }}
-                    onTouchEnd={() => router.push('/(tabs)/chat')}
-                >
-                    <Text style={{ fontWeight: '500' }}>
-                        Recommend the Christmas Movie
+            <ScrollView>
+                <View >
+                    <Text style={styles.header}>
+                        Let's talk Movies.
                     </Text>
                 </View>
-                <View
-                    style={{
-                        backgroundColor: '#FFF',
-                        borderRadius: 16,
-                        paddingHorizontal: 16,
-                        paddingVertical: 8,
-                    }}
-                    onTouchEnd={() => router.push('/(tabs)/chat')}
-                >
-                    <Text style={{ fontWeight: '500' }}>
-                        Summary Harry Potter
-                    </Text>
-                </View>
-            </View>
 
-            {/* Create the bubble for the button */}
-            <View style={{ width: '100%' }}>
-                <View
-                    style={{
-                        backgroundColor: '#FFF',
-                        borderRadius: 16,
-                        paddingHorizontal: 16,
-                        paddingVertical: 16,
-                        margin: 16,
-                        alignItems: 'center',
-                    }}
-                    onTouchEnd={() => router.push('/(tabs)/chat')}
-                >
-                    <View>
-                        <Text style={{ fontWeight: 'bold', fontSize: 20 }}>
-                            Talk to NIMA
+                {/* Talk to Nima: direct to chat */}
+                <View style={{ width: '100%' }}>
+                    <View
+                        style={{
+                            backgroundColor: Colors.bubble_background,
+                            borderRadius: 16,
+                            paddingHorizontal: 16,
+                            paddingVertical: 16,
+                            margin: 16,
+                            alignItems: 'center',
+                        }}
+                        onTouchEnd={() => router.push('/(tabs)/chat')}
+                    >
+                        <View>
+                            <Text style={styles.subHeader}>
+                                Talk to NIMA
+                            </Text>
+                        </View>
+                    </View>
+                </View>
+
+                <View style={{ gap: 16 }}>
+                    <Text style={styles.subHeader}>
+                        Popular Questions
+                    </Text>
+                    <View
+                        style={styles.bubble}
+                        onTouchEnd={() => router.push('/(tabs)/chat')}
+                    >
+                        <Text style={{ fontWeight: '500' }}>What is NIMA?</Text>
+                    </View>
+                    <View
+                        style={styles.bubble}
+                        onTouchEnd={() => router.push('/(tabs)/chat')}
+                    >
+                        <Text style={{ fontWeight: '500' }}>
+                            Recommend some Christmas Movies
+                        </Text>
+                    </View>
+
+                    <View
+                        style={styles.bubble}
+                        onTouchEnd={() => router.push('/(tabs)/chat')}
+                    >
+                        <Text style={{ fontWeight: '500' }}>
+                            Summarize the first Harry Potter movie
                         </Text>
                     </View>
                 </View>
-            </View>
+                <View style={styles.slider} >
+                    <Text style={styles.subHeader}>
+                        Explore Noteworthy Titles
+                    </Text>
+                    <Slider />
+                </View>
+                
+            </ScrollView>
         </LinearGradient>
     )
 }
 
 const styles = StyleSheet.create({
+    header: {
+        fontWeight: 'bold', 
+        fontSize: 35, 
+        paddingTop: 30,
+        paddingHorizontal: 20, // Same horizontal padding as bubble
+        paddingVertical: 1, 
+    },
     container: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
     },
-    bubble: {
-        backgroundColor: '#FFF',
-        borderRadius: 50,
-        padding: 20,
-        marginBottom: 20,
-        borderWidth: 2,
-        borderColor: '#ddd',
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.8,
-        shadowRadius: 2,
-        elevation: 5,
-        justifyContent: 'center',
-        alignItems: 'center',
-        position: 'absolute',
-        bottom: 169, // Adjust this value to position vertically
-        left: 80, // This will align the bubble towards the left-hand side
+    slider: {
+        marginTop: 20,
+        marginBottom: 200, //bottom of screen, change to necessary
     },
-    bubbleText: {
-        fontSize: 16,
-        fontWeight: 'bold',
-        marginBottom: 10,
+    subHeader: {
+        fontWeight: 'bold', 
+        fontSize: 20, 
+        paddingHorizontal: 20, // Same horizontal padding as bubble
+        paddingVertical: 1,
+    },
+    bubble: {
+        backgroundColor: Colors.teal,
+        fontSize: 20,
+        borderRadius: 16,
+        paddingHorizontal: 16,
+        paddingVertical: 10,
+        marginHorizontal: 16,
+        alignItems: 'center',
+        opacity: 0.95,
     },
     image: {
         width: width * 1,
