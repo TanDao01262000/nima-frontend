@@ -75,11 +75,10 @@ const styles = StyleSheet.create({
 
   bubbleContainer: {
     position: 'absolute',
-    bottom: 160, // Adjust this to position the bubble above the cat
+    bottom: 270, // Adjust this to position the bubble above the cat
     alignItems: 'center',
     zIndex: 2,
     left: 40,
-    paddingBottom: 110,
   },
 
   bubble: {
