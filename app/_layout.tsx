@@ -11,8 +11,10 @@ import { MyLightTheme } from "../utilities/themeOptions";
 import { useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React from "react";
+import { useRouter } from "expo-router";
 
 export default function Layout() {
+  const router = useRouter();
 
   const { colorScheme, setColorScheme } = useColorScheme();
     useEffect(() => {
@@ -37,6 +39,7 @@ export default function Layout() {
           <Drawer.Screen
             name="(tabs)"
             options={{
+              headerTransparent: true,
               drawerLabel: "Home",
               title: "",
             }}

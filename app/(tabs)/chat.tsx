@@ -19,22 +19,29 @@ import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Avatar } from "@rneui/themed";
 import React from "react";
+import { useLocalSearchParams, useRouter } from "expo-router";
 
 export default function Chat() {
-  const backendUrl = process.env.EXPO_PUBLIC_API_URL;
+  //const backendUrl = process.env.EXPO_PUBLIC_API_URL;
+  const backendUrl = "http://localhost:8000";
   const [chatText, setChatText] = useState("");
   const [textInputHeight, setTextInputHeight] = useState(60);
   const [sendingChat, setSendingChat] = useState(false);
   const [conversation, setConversation] = useState<
     { role: String; content: string }[]
   >([]);
+  const { question } = useLocalSearchParams();
 
+  const router = useRouter();
   const translateYRef = useRef(new Animated.Value(0)).current;
   const tabBarHeight = useBottomTabBarHeight();
 
   const { width, height } = Dimensions.get("window");
 
   useEffect(() => {
+    if (typeof question=='string') {
+      setChatText(question);
+    }
     const keyboardWillShowListener = Keyboard.addListener(
       "keyboardWillShow",
       (event) => {
@@ -64,7 +71,7 @@ export default function Chat() {
       keyboardWillShowListener.remove();
       keyboardWillHideListener.remove();
     };
-  }, []);
+  },[question]);
 
   const handleContentSizeChange = (event: {
     nativeEvent: { contentSize: { height: number } };
@@ -73,9 +80,9 @@ export default function Chat() {
   };
 
   const handleSubmit = async () => {
+    const messageValue = chatText;
     setSendingChat(true);
     Keyboard.dismiss();
-    const messageValue = chatText;
     if (messageValue.trim() === "") return;
     const newHumanMessage = {
       content: messageValue,
@@ -101,6 +108,7 @@ export default function Chat() {
           config: {
             metadata: {
               conversation_id: "conversationId",
+              //question: "questionString"
             },
           },
         }),
@@ -214,20 +222,26 @@ export default function Chat() {
                 translateY: Platform.OS === "ios" ? translateYRef : 0,
               },
             ],
-            backgroundColor: "white",
+            backgroundColor: "transparent",
             paddingHorizontal: 10,
-            paddingVertical: 5,
+            paddingVertical: 10,
+            paddingBottom: 70,
+            
           }}
         >
           <View className="flex-row items-center">
             <TextInput
               className="flex-1 border-2 rounded-xl border-gray-600 mr-4 px-3 max-h-20"
               multiline
-              style={{ height: textInputHeight }}
+              style={{ 
+                height: textInputHeight,
+                borderRadius: 20,
+                textAlignVertical: 'center'
+              }}
               value={chatText}
               onChangeText={(text) => setChatText(text)}
-              placeholder="Ask a question here"
-              onContentSizeChange={handleContentSizeChange}
+              placeholder="Message NIMA"
+              onContentSizeChange={handleContentSizeChange}              
             />
             <Pressable
               style={{
@@ -245,6 +259,19 @@ export default function Chat() {
               )}
             </Pressable>
           </View>
+          <Pressable
+            style={{
+              position: "absolute",
+              bottom: 20,
+              left: 20,
+              backgroundColor: "blue",
+              padding: 10,
+              borderRadius: 50,
+            }}
+            onPress={() => router.push("/")} // Navigating to home
+          >
+            <Feather name="home" size={24} color="white" />
+          </Pressable>
         </Animated.View>
       </ImageBackground>
     </View>

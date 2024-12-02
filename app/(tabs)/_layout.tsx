@@ -2,10 +2,11 @@ import React from "react";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Tabs } from "expo-router";
 import { Colors } from "../../constants/Colors";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Animated } from "react-native";
 
 export default function TabLayout() {
   return (
+    
     <Tabs screenOptions={{ 
       tabBarStyle: {
         backgroundColor: Colors.gray,
@@ -50,6 +51,7 @@ export default function TabLayout() {
         name="chat"
         options={{
           title: "Chat",
+          tabBarStyle: { display: 'none' },
           tabBarIcon: ({ color, size, focused }) => (
             <View
               style={{
@@ -84,7 +86,3 @@ export default function TabLayout() {
     </Tabs>
   );
 }
-
-const styles = StyleSheet.create({
-
-});

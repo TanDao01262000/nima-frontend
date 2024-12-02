@@ -12,7 +12,8 @@ export default function Dashboard() {
       resizeMode="cover"
     />
     </>
-    
+    // new description: 
+    // Discover upcoming movies, similar titles, and other movie related questions with Nima
   );
 }
 
