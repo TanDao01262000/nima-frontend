@@ -1,19 +1,28 @@
 
 # NIMA Frontend Mobile Interface
 
-This application consists of the frontend interface of our NIMA movie recommendation chatbot. It provides a mobile interface where users can interact and conversate with the NIMA chatbot, providing information about any questions or comments users may have regarding movies. 
+This application consists of the mobile frontend interface for our NIMA movie recommendation chatbot. It provides a mobile interface where users can interact and conversate with the NIMA chatbot, providing information about any questions or comments users may have regarding movies. 
 
-## Requirements
 
-To run the application, you will need Node.js is installed on your system, as well as the backend component of our application.
-To get started, clone the NIMA frontend interface with the command:
+## Getting Started
 
-    $ git clone https://github.com/TanDao01262000/nima-frontend
+### Requirements
+
+Before running the frontend application, you will need Node.js is installed on your system, as well as the backend component of our application.
 
 ### NIMA Backend Application 
 
-Refer to the instructions listed in the github repository to install our NIMA Agent backend component: https://github.com/TanDao01262000/nima-agent
+Refer to the instructions listed in the github repository to install our NIMA Agent backend component:
+
+    - https://github.com/TanDao01262000/nima-agent
+
 Once completed, refer to the instructions below to set up the mobile interface.
+
+### Clone NIMA Frontend Application
+
+To get started, clone the NIMA frontend interface with the command:
+
+    $ git clone https://github.com/TanDao01262000/nima-frontend
 
 ### Node.js
 
@@ -46,6 +55,15 @@ Ensure Expo Router is installed using the following command:
 While still in the nima-frontend directory, you can now use the following command to build and run the frontend application:
 
     $ npx expo start
+
+Once completed, the mobile interface should be running. Press the "i" key to run the mobile simulator on MacOS. 
+
+### Contact
+
+  - Quyen Nguyen: quyennln1412@gmail.com
+  - Michael Kao: michael.kao@sjsu.edu
+  - Do Tran: dohoangnhu.tran@sjsu.edu
+  - Tan Dao: tankhanhdao@gmail.com
 
 
 
