@@ -1,7 +1,7 @@
 
-# NIMA Frontend
+# NIMA Frontend Mobile Interface
 
-This application consists of the frontend interface of our NIMA movie recommendation chatbot. It provides a mobile interface where users can interact and conversate with the NIMA chatbot, 
+This application consists of the frontend interface of our NIMA movie recommendation chatbot. It provides a mobile interface where users can interact and conversate with the NIMA chatbot, providing information about any questions or comments users may have regarding movies. 
 
 ## Requirements
 
@@ -46,5 +46,7 @@ Ensure Expo Router is installed using the following command:
 While still in the nima-frontend directory, you can now use the following command to build and run the frontend application:
 
     $ npx expo start
+
+
 
     
